@@ -10,8 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_27_232352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alums", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "name"
+    t.date "graduation_year"
+    t.string "industry"
+    t.string "bio"
+    t.string "image"
+    t.string "linkedin"
+    t.integer "uni_id"
+    t.text "ai_pref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_alums_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_alums_on_reset_password_token", unique: true
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "city"
+    t.integer "alum_id"
+    t.string "address"
+    t.string "unit_image"
+    t.text "unit_bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "universities", force: :cascade do |t|
+    t.string "name"
+    t.string "uni_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
