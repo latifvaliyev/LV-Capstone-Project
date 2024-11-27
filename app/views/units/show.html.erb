@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Unit #<%= @the_unit.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/units">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_unit/<%= @the_unit.id %>">
+          Delete unit
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        City
+      </dt>
+      <dd>
+        <%= @the_unit.city %>
+      </dd>
+
+      <dt>
+        Alum
+      </dt>
+      <dd>
+        <%= @the_unit.alum_id %>
+      </dd>
+
+      <dt>
+        Address
+      </dt>
+      <dd>
+        <%= @the_unit.address %>
+      </dd>
+
+      <dt>
+        Unit image
+      </dt>
+      <dd>
+        <%= @the_unit.unit_image %>
+      </dd>
+
+      <dt>
+        Unit bio
+      </dt>
+      <dd>
+        <%= @the_unit.unit_bio %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_unit.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_unit.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit unit
+    </h2>
+
+    <form action="/modify_unit/<%= @the_unit.id %>"  method="post" >
+      <div>
+        <label for="city_box">
+          City
+        </label>
+
+        <input type="text" id="city_box" name="query_city" value="<%= @the_unit.city %>">
+      </div>
+
+      <div>
+        <label for="alum_id_box">
+          Alum
+        </label>
+
+        <input type="text" id="alum_id_box" name="query_alum_id" value="<%= @the_unit.alum_id %>">
+      </div>
+
+      <div>
+        <label for="address_box">
+          Address
+        </label>
+
+        <input type="text" id="address_box" name="query_address" value="<%= @the_unit.address %>">
+      </div>
+
+      <div>
+        <label for="unit_image_box">
+          Unit image
+        </label>
+
+        <input type="text" id="unit_image_box" name="query_unit_image" value="<%= @the_unit.unit_image %>">
+      </div>
+
+      <div>
+        <label for="unit_bio_box">
+          Unit bio
+        </label>
+
+        <textarea id="unit_bio_box" name="query_unit_bio"><%= @the_unit.unit_bio %></textarea>
+      </div>
+
+      <button>
+        Update unit
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

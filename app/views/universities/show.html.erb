@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      University #<%= @the_university.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/universities">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_university/<%= @the_university.id %>">
+          Delete university
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_university.name %>
+      </dd>
+
+      <dt>
+        Uni image
+      </dt>
+      <dd>
+        <%= @the_university.uni_image %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_university.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_university.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit university
+    </h2>
+
+    <form action="/modify_university/<%= @the_university.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_university.name %>">
+      </div>
+
+      <div>
+        <label for="uni_image_box">
+          Uni image
+        </label>
+
+        <input type="text" id="uni_image_box" name="query_uni_image" value="<%= @the_university.uni_image %>">
+      </div>
+
+      <button>
+        Update university
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

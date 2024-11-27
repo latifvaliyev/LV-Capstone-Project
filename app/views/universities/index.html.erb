@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all universities
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new university
+    </h2>
+
+    <form action="/insert_university" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="uni_image_box">
+          Uni image
+        </label>
+
+        <input type="text" id="uni_image_box" name="query_uni_image">
+      </div>
+
+      <button>
+        Create university
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Uni image
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_universities.each do |a_university| %>
+      <tr>
+        <td>
+          <%= a_university.id %>
+        </td>
+
+        <td>
+          <%= a_university.name %>
+        </td>
+
+        <td>
+          <%= a_university.uni_image %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_university.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_university.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/universities/<%= a_university.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
