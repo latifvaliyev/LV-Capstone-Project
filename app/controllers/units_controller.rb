@@ -42,7 +42,7 @@ class UnitsController < ApplicationController
     the_unit = Unit.where({ :id => the_id }).at(0)
 
     the_unit.city = params.fetch("query_city")
-    the_unit.alum_id = params.fetch("query_alum_id")
+    the_unit.alum_id = current_alum.id
     the_unit.address = params.fetch("query_address")
     the_unit.unit_image = params.fetch("query_unit_image")
     the_unit.unit_bio = params.fetch("query_unit_bio")
