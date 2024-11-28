@@ -44,7 +44,16 @@
       <dd>
         <%= @the_unit.unit_bio %>
       </dd>
-
+      <dt>
+        Occupant
+      </dt>
+      <dd>
+        <% if @the_unit.alum.present? %>
+          <%= link_to @the_unit.alum.name, alum_path(@the_unit.alum) %>
+        <% else %>
+          No Occupant
+        <% end %>
+      </dd>
       <dt>
         Created
       </dt>
@@ -110,5 +119,3 @@
     </form>
   </div>
 </div>
-
-<hr>
