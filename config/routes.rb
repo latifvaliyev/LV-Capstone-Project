@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   devise_for :alums
   get "/" => "universities#index"
+  resources :alums, only: [:show]
 
   # Routes for the University resource:
 

@@ -9,6 +9,10 @@
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
 
+    <%= f.input :name,
+                required: true,
+                input_html: { placeholder: "Enter your Full name" } %>
+
     <%= f.input :uni_id,
                 as: :select,
                 collection: [
