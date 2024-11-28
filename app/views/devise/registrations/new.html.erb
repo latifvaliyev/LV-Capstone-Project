@@ -1,0 +1,46 @@
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :university,
+                as: :select,
+                collection: [
+                  'Harvard University', 'Stanford University', 'MIT', 'University of Chicago',
+                  'Columbia University', 'Yale University', 'Princeton University', 'University of Pennsylvania',
+                  'California Institute of Technology', 'Duke University', 'Johns Hopkins University',
+                  'Northwestern University', 'University of California, Berkeley', 'University of Michigan',
+                  'Cornell University', 'University of Virginia', 'University of Southern California',
+                  'Carnegie Mellon University', 'New York University', 'University of California, Los Angeles',
+                  'Emory University', 'Georgetown University', 'University of Texas at Austin', 'University of Florida',
+                  'University of Notre Dame', 'Boston University', 'University of Washington', 'Vanderbilt University',
+                  'University of North Carolina at Chapel Hill', 'Brown University', 'Rice University',
+                  'University of Wisconsin-Madison', 'Washington University in St. Louis', 'University of Illinois Urbana-Champaign',
+                  'Georgia Institute of Technology', 'University of Rochester', 'University of Miami',
+                  'Ohio State University', 'University of Maryland', 'University of Minnesota',
+                  'University of Pittsburgh', 'Pennsylvania State University', 'Purdue University',
+                  'University of California, San Diego', 'University of California, Davis', 'University of California, Santa Barbara',
+                  'University of California, Irvine', 'Rutgers University', 'University of Arizona'
+                ],
+                prompt: 'Select your university',
+                required: true %>
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

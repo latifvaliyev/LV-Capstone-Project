@@ -7,44 +7,6 @@
 </div>
 
 <hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new university
-    </h2>
-
-
-    <% if current_alum != nil %>
-    <form action="/insert_university" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="uni_image_box">
-          Uni image
-        </label>
-
-        <input type="text" id="uni_image_box" name="query_uni_image">
-      </div>
-
-      <button>
-        Add university
-      </button>
-    </form>
-    <% else %>
-      <p>You must <a href="/alums/sign_in">sign in</a> to add a board.</p>
-    <% end %>
-    
-  </div>
-</div>
-
-<hr>
 <div>
   <div>
     <table border="1">
