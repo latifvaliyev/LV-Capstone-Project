@@ -11,17 +11,16 @@
   <div>
     <table border="1">
       <tr>
+
         <th>
-          ID
+          Image
         </th>
 
         <th>
           Name
         </th>
 
-        <th>
-          Uni image
-        </th>
+
 
         <th>
         </th>
@@ -31,17 +30,11 @@
       <tr>
 
         <td>
-          <%= a_university.uni_image %>
+          <%= image_tag(a_university.uni_image, alt: a_university.name, width: 100, height: 100) %>
         </td>
 
         <td>
           <%= a_university.name %>
-        </td>
-
-
-
-        <td>
-          <%= time_ago_in_words(a_university.created_at) %> ago
         </td>
 
         <td>
