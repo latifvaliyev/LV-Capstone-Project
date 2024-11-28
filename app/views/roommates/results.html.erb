@@ -1,0 +1,27 @@
+<h1>Compatible Roommates in <%= params[:city] %></h1>
+
+<% if @results.any? %>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Industry</th>
+      <th>Graduation Year</th>
+      <th>Compatibility Bio</th>
+      <th>Details</th>
+    </tr>
+
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result[:alum].name %></td>
+        <td><%= result[:alum].industry %></td>
+        <td><%= result[:alum].graduation_year %></td>
+        <td><%= result[:compatibility_bio] %></td>
+        <td><%= link_to "View Profile", alum_path(result[:alum]) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No compatible roommates found for the selected criteria.</p>
+<% end %>
+
+<a href="/find_roommates">Search Again</a>

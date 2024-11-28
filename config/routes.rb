@@ -41,7 +41,10 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # This is a blank app! Pick your first screen, build out the RCAV, and go from there. E.g.:
+  # Routes for the Roommate Finder
+
+  get("/find_roommates", { :controller => "roommates", :action => "new" })
+  post("/find_roommates", { :controller => "roommates", :action => "create" })
 
 
   
