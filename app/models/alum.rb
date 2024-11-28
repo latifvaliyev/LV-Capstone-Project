@@ -7,7 +7,7 @@
 #  bio                    :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  graduation_year        :date
+#  graduation_year        :integer
 #  image                  :string
 #  industry               :string
 #  linkedin               :string

@@ -13,7 +13,7 @@
     <div>
       <p><strong>Bio:</strong> <%= @the_alum.bio %></p>
       <p><strong>Email:</strong> <%= mail_to @the_alum.email %></p>
-      <p><strong>Graduation Year:</strong> <%= @the_alum.graduation_year&.strftime("%Y") %></p>
+      <p><strong>Graduation Year:</strong> <%= @the_alum.graduation_year %></p>
       <p><strong>Industry:</strong> <%= @the_alum.industry %></p>
       <p><strong>LinkedIn:</strong>
         <% if @the_alum.linkedin.present? %>
@@ -50,6 +50,11 @@
             <% end %>
           </td>
           <td><%= unit.unit_bio %></td>
+        <td>
+          <a href="/units/<%= unit.id %>">
+            Show details
+          </a>
+        </td>
         </tr>
       <% end %>
     </table>
