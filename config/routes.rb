@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   #------------------------------
 
   devise_for :alums
+  get "/" => "universities#index"
 
   # Routes for the University resource:
 
@@ -41,6 +42,6 @@ Rails.application.routes.draw do
 
   # This is a blank app! Pick your first screen, build out the RCAV, and go from there. E.g.:
 
-  get "/" => "universities#index"
+
   
 end

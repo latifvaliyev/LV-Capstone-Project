@@ -14,6 +14,7 @@
       Add a new unit
     </h2>
 
+    <% if current_alum != nil %>
     <form action="/insert_unit" method="post">
       <div>
         <label for="city_box">
@@ -59,6 +60,10 @@
         Create unit
       </button>
     </form>
+    <% else %>
+      <p>You must <a href="/alums/sign_in">sign in</a> to add a board.</p>
+    <% end %>
+
   </div>
 </div>
 
