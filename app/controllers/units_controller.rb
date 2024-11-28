@@ -1,9 +1,13 @@
 class UnitsController < ApplicationController
   def index
-    matching_units = Unit.all
-
+    if params[:city].present?
+      matching_units = Unit.where(city: params[:city])
+    else
+      matching_units = Unit.all
+    end
+  
     @list_of_units = matching_units.order({ :created_at => :desc })
-
+  
     render({ :template => "units/index" })
   end
 
@@ -20,7 +24,7 @@ class UnitsController < ApplicationController
   def create
     the_unit = Unit.new
     the_unit.city = params.fetch("query_city")
-    the_unit.alum_id = params.fetch("query_alum_id")
+    the_unit.alum_id = current_alum.id
     the_unit.address = params.fetch("query_address")
     the_unit.unit_image = params.fetch("query_unit_image")
     the_unit.unit_bio = params.fetch("query_unit_bio")

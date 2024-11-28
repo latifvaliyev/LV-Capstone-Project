@@ -25,14 +25,6 @@
       </div>
 
       <div>
-        <label for="alum_id_box">
-          Alum
-        </label>
-
-        <input type="text" id="alum_id_box" name="query_alum_id">
-      </div>
-
-      <div>
         <label for="address_box">
           Address
         </label>
@@ -68,12 +60,38 @@
 </div>
 
 <hr>
+
+<div>
+  <div>
+    <h2>
+      Filter by City
+    </h2>
+
+    <form method="get" action="/units">
+      <div>
+        <label for="filter_city">
+          Select a city:
+        </label>
+        <select id="filter_city" name="city">
+          <option value="">All Cities</option>
+          <% @list_of_units.map(&:city).uniq.each do |city| %>
+            <option value="<%= city %>"><%= city %></option>
+          <% end %>
+        </select>
+        <button type="submit">Filter</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<hr>
 <div>
   <div>
     <table border="1">
       <tr>
         <th>
-          ID
+          Image
         </th>
 
         <th>
@@ -81,27 +99,14 @@
         </th>
 
         <th>
-          Alum
-        </th>
-
-        <th>
           Address
         </th>
 
         <th>
-          Unit image
+          Bio
         </th>
-
         <th>
-          Unit bio
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
+          When Posted
         </th>
 
         <th>
@@ -110,25 +115,19 @@
 
       <% @list_of_units.each do |a_unit| %>
       <tr>
-        <td>
-          <%= a_unit.id %>
-        </td>
 
+        <td>
+          <%= a_unit.unit_image %>
+        </td>
         <td>
           <%= a_unit.city %>
-        </td>
-
-        <td>
-          <%= a_unit.alum_id %>
         </td>
 
         <td>
           <%= a_unit.address %>
         </td>
 
-        <td>
-          <%= a_unit.unit_image %>
-        </td>
+
 
         <td>
           <%= a_unit.unit_bio %>
@@ -136,9 +135,6 @@
 
         <td>
           <%= time_ago_in_words(a_unit.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_unit.updated_at) %> ago
         </td>
 
         <td>

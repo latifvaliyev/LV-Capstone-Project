@@ -19,26 +19,6 @@
     </div>
 
     <dl>
-      <dt>
-        City
-      </dt>
-      <dd>
-        <%= @the_unit.city %>
-      </dd>
-
-      <dt>
-        Alum
-      </dt>
-      <dd>
-        <%= @the_unit.alum_id %>
-      </dd>
-
-      <dt>
-        Address
-      </dt>
-      <dd>
-        <%= @the_unit.address %>
-      </dd>
 
       <dt>
         Unit image
@@ -46,7 +26,18 @@
       <dd>
         <%= @the_unit.unit_image %>
       </dd>
-
+      <dt>
+        City
+      </dt>
+      <dd>
+        <%= @the_unit.city %>
+      </dd>
+      <dt>
+        Address
+      </dt>
+      <dd>
+        <%= @the_unit.address %>
+      </dd>
       <dt>
         Unit bio
       </dt>
@@ -55,14 +46,14 @@
       </dd>
 
       <dt>
-        Created at
+        Created
       </dt>
       <dd>
         <%= time_ago_in_words(@the_unit.created_at) %> ago
       </dd>
 
       <dt>
-        Updated at
+        Last Updated
       </dt>
       <dd>
         <%= time_ago_in_words(@the_unit.updated_at) %> ago
@@ -87,14 +78,6 @@
         </label>
 
         <input type="text" id="city_box" name="query_city" value="<%= @the_unit.city %>">
-      </div>
-
-      <div>
-        <label for="alum_id_box">
-          Alum
-        </label>
-
-        <input type="text" id="alum_id_box" name="query_alum_id" value="<%= @the_unit.alum_id %>">
       </div>
 
       <div>
