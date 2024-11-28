@@ -10,6 +10,82 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :uni_id,
+                as: :select,
+                collection: [
+                  ['Harvard University', 1],
+                  ['Stanford University', 2],
+                  ['MIT', 3],
+                  ['University of Chicago', 4],
+                  ['Columbia University', 5],
+                  ['Yale University', 6],
+                  ['Princeton University', 7],
+                  ['University of Pennsylvania', 8],
+                  ['California Institute of Technology', 9],
+                  ['Duke University', 10],
+                  ['Johns Hopkins University', 11],
+                  ['Northwestern University', 12],
+                  ['University of California, Berkeley', 13],
+                  ['University of Michigan', 14],
+                  ['Cornell University', 15],
+                  ['University of Virginia', 16],
+                  ['University of Southern California', 17],
+                  ['Carnegie Mellon University', 18],
+                  ['New York University', 19],
+                  ['University of California, Los Angeles', 20],
+                  ['Emory University', 21],
+                  ['Georgetown University', 22],
+                  ['University of Texas at Austin', 23],
+                  ['University of Florida', 24],
+                  ['University of Notre Dame', 25],
+                  ['Boston University', 26],
+                  ['University of Washington', 27],
+                  ['Vanderbilt University', 28],
+                  ['University of North Carolina at Chapel Hill', 29],
+                  ['Brown University', 30],
+                  ['Rice University', 31],
+                  ['University of Wisconsin-Madison', 32],
+                  ['Washington University in St. Louis', 33],
+                  ['University of Illinois Urbana-Champaign', 34],
+                  ['Georgia Institute of Technology', 35],
+                  ['University of Rochester', 36],
+                  ['University of Miami', 37],
+                  ['Ohio State University', 38],
+                  ['University of Maryland', 39],
+                  ['University of Minnesota', 40],
+                  ['University of Pittsburgh', 41],
+                  ['Pennsylvania State University', 42],
+                  ['Purdue University', 43],
+                  ['University of California, San Diego', 44],
+                  ['University of California, Davis', 45],
+                  ['University of California, Santa Barbara', 46],
+                  ['University of California, Irvine', 47],
+                  ['Rutgers University', 48],
+                  ['University of Arizona', 49]
+                ],
+                prompt: 'Select your university',
+                required: true %>
+
+    <%= f.input :graduation_year,
+                required: true,
+                as: :select,
+                collection: (1950..Date.today.year).to_a.reverse,
+                prompt: 'Select your graduation year' %>
+
+    <%= f.input :industry,
+                required: true,
+                as: :string,
+                input_html: { placeholder: "e.g., Finance, Tech, Healthcare" } %>
+
+    <%= f.input :linkedin,
+                required: false,
+                input_html: { placeholder: "Paste your LinkedIn URL" } %>
+
+    <%= f.input :bio,
+                required: false,
+                as: :text,
+                input_html: { rows: 3, placeholder: "Write a brief bio (optional)" } %>
+
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,

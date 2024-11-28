@@ -15,7 +15,7 @@
       <a href="/universities">Universities</a>
       <a href="/units">Units</a>
       <% if current_alum != nil %>
-        <a href="/alums/sign_out">Sign out</a>
+      <%= link_to "Sign out", destroy_alum_session_path, method: :delete %>
         <a href="/alums/edit">Edit profile</a>
       <% else %>
         <a href="/alums/sign_up">Sign up</a>

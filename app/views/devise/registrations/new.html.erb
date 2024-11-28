@@ -3,13 +3,12 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-
-
   <div class="form-inputs">
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                input_html: { autocomplete: "email" } %>
+
     <%= f.input :uni_id,
                 as: :select,
                 collection: [
@@ -65,10 +64,32 @@
                 ],
                 prompt: 'Select your university',
                 required: true %>
+
+    <%= f.input :graduation_year,
+                required: true,
+                as: :select,
+                collection: (1950..Date.today.year).to_a.reverse,
+                prompt: 'Select your graduation year' %>
+
+    <%= f.input :industry,
+                required: true,
+                as: :string,
+                input_html: { placeholder: "e.g., Finance, Tech, Healthcare" } %>
+
+    <%= f.input :linkedin,
+                required: false,
+                input_html: { placeholder: "Paste your LinkedIn URL" } %>
+
+    <%= f.input :bio,
+                required: false,
+                as: :text,
+                input_html: { rows: 3, placeholder: "Write a brief bio (optional)" } %>
+
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
+
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
@@ -89,6 +110,5 @@
     </ul>
   </div>
 <% end %>
-
 
 <%= render "devise/shared/links" %>
