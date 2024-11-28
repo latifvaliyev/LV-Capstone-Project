@@ -3,29 +3,65 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
+
+
   <div class="form-inputs">
     <%= f.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
-    <%= f.input :university,
+    <%= f.input :uni_id,
                 as: :select,
                 collection: [
-                  'Harvard University', 'Stanford University', 'MIT', 'University of Chicago',
-                  'Columbia University', 'Yale University', 'Princeton University', 'University of Pennsylvania',
-                  'California Institute of Technology', 'Duke University', 'Johns Hopkins University',
-                  'Northwestern University', 'University of California, Berkeley', 'University of Michigan',
-                  'Cornell University', 'University of Virginia', 'University of Southern California',
-                  'Carnegie Mellon University', 'New York University', 'University of California, Los Angeles',
-                  'Emory University', 'Georgetown University', 'University of Texas at Austin', 'University of Florida',
-                  'University of Notre Dame', 'Boston University', 'University of Washington', 'Vanderbilt University',
-                  'University of North Carolina at Chapel Hill', 'Brown University', 'Rice University',
-                  'University of Wisconsin-Madison', 'Washington University in St. Louis', 'University of Illinois Urbana-Champaign',
-                  'Georgia Institute of Technology', 'University of Rochester', 'University of Miami',
-                  'Ohio State University', 'University of Maryland', 'University of Minnesota',
-                  'University of Pittsburgh', 'Pennsylvania State University', 'Purdue University',
-                  'University of California, San Diego', 'University of California, Davis', 'University of California, Santa Barbara',
-                  'University of California, Irvine', 'Rutgers University', 'University of Arizona'
+                  ['Harvard University', 1],
+                  ['Stanford University', 2],
+                  ['MIT', 3],
+                  ['University of Chicago', 4],
+                  ['Columbia University', 5],
+                  ['Yale University', 6],
+                  ['Princeton University', 7],
+                  ['University of Pennsylvania', 8],
+                  ['California Institute of Technology', 9],
+                  ['Duke University', 10],
+                  ['Johns Hopkins University', 11],
+                  ['Northwestern University', 12],
+                  ['University of California, Berkeley', 13],
+                  ['University of Michigan', 14],
+                  ['Cornell University', 15],
+                  ['University of Virginia', 16],
+                  ['University of Southern California', 17],
+                  ['Carnegie Mellon University', 18],
+                  ['New York University', 19],
+                  ['University of California, Los Angeles', 20],
+                  ['Emory University', 21],
+                  ['Georgetown University', 22],
+                  ['University of Texas at Austin', 23],
+                  ['University of Florida', 24],
+                  ['University of Notre Dame', 25],
+                  ['Boston University', 26],
+                  ['University of Washington', 27],
+                  ['Vanderbilt University', 28],
+                  ['University of North Carolina at Chapel Hill', 29],
+                  ['Brown University', 30],
+                  ['Rice University', 31],
+                  ['University of Wisconsin-Madison', 32],
+                  ['Washington University in St. Louis', 33],
+                  ['University of Illinois Urbana-Champaign', 34],
+                  ['Georgia Institute of Technology', 35],
+                  ['University of Rochester', 36],
+                  ['University of Miami', 37],
+                  ['Ohio State University', 38],
+                  ['University of Maryland', 39],
+                  ['University of Minnesota', 40],
+                  ['University of Pittsburgh', 41],
+                  ['Pennsylvania State University', 42],
+                  ['Purdue University', 43],
+                  ['University of California, San Diego', 44],
+                  ['University of California, Davis', 45],
+                  ['University of California, Santa Barbara', 46],
+                  ['University of California, Irvine', 47],
+                  ['Rutgers University', 48],
+                  ['University of Arizona', 49]
                 ],
                 prompt: 'Select your university',
                 required: true %>
@@ -42,5 +78,17 @@
     <%= f.button :submit, "Sign up" %>
   </div>
 <% end %>
+
+<% if resource.errors.any? %>
+  <div class="error-messages">
+    <h2><%= pluralize(resource.errors.count, "error") %> prohibited this account from being created:</h2>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
 <%= render "devise/shared/links" %>

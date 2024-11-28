@@ -2,7 +2,7 @@ class UniversitiesController < ApplicationController
   def index
     matching_universities = University.all
 
-    @list_of_universities = matching_universities.order({ :created_at => :desc })
+    @list_of_universities = matching_universities.order( :id)
 
     render({ :template => "universities/index" })
   end
