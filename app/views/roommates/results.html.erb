@@ -1,9 +1,25 @@
+<style>
+  .heading-container {
+    text-align: center;
+    background: white; /* Solid white background */
+    color: #2c3e50; /* Dark text color */
+    padding: 10px; /* Reduced padding */
+    border-radius: 5px; /* Subtle rounded corners */
+    margin: 20px auto; /* Center it and add space */
+    max-width: 50%; /* Smaller container */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    border: 1px solid #ddd; /* Subtle border for definition */
+  }
+</style>
+
+<div class="heading-container">
+
 <div style="text-align: center; margin-bottom: 20px;">
   <h1 style="font-family: Arial, sans-serif; color: #2c3e50;">
     Compatible Roommates in <%= params[:city] %>
   </h1>
 </div>
-
+</div>
 <hr style="border: 1px solid #ddd; margin-bottom: 20px;">
 
 <% if @results.present? %>

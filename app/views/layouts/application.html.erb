@@ -5,40 +5,177 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <style>
+      /* General Body Styling */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+        color: #2c3e50;
+        overflow-x: hidden;
+      }
+
+      /* Navigation Bar Styling */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 30px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #2c3e50;
+        font-weight: bold;
+        margin: 0 15px;
+        font-size: 16px;
+        transition: color 0.3s, transform 0.3s;
+      }
+
+      nav a:hover {
+        color: #2c3e50;
+        transform: scale(1.1);
+      }
+
+      /* Main Content Area */
+      .content {
+        margin-top: 100px; /* Adjust for fixed nav */
+        padding: 20px 40px;
+      }
+
+      /* Alert and Notice Container */
+      .alert-container {
+        margin-top: 80px; /* Push alerts down to avoid overlap with the nav bar */
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .notice, .alert {
+        padding: 10px 20px;
+        background-color: #ffebee; /* Light red background for alerts */
+        color: #d32f2f; /* Dark red text */
+        border: 1px solid #d32f2f;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .notice {
+        background-color: #e8f5e9; /* Light green for success notices */
+        color: #388e3c;
+        border: 1px solid #388e3c;
+      }
+
+      /* Interactive Background */
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .dot {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: black;
+        border-radius: 50%;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const background = document.createElement("div");
+        background.classList.add("background");
+        document.body.appendChild(background);
+
+        const dots = [];
+        for (let i = 0; i < 500; i++) { // Adjusted dot count
+          const dot = document.createElement("div");
+          dot.classList.add("dot");
+          dot.style.top = `${Math.random() * 100}vh`;
+          dot.style.left = `${Math.random() * 100}vw`;
+          background.appendChild(dot);
+          dots.push(dot);
+        }
+
+        document.addEventListener("mousemove", (e) => {
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+
+          dots.forEach((dot) => {
+            const dotX = dot.offsetLeft + dot.offsetWidth / 2;
+            const dotY = dot.offsetTop + dot.offsetHeight / 2;
+
+            const distance = Math.hypot(mouseX - dotX, mouseY - dotY);
+
+            if (distance < 100) {
+              const angle = Math.atan2(mouseY - dotY, mouseX - dotX);
+              const offsetX = Math.cos(angle) * 50;
+              const offsetY = Math.sin(angle) * 50;
+
+              dot.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+              dot.style.opacity = 0.2;
+            } else {
+              dot.style.transform = "translate(0, 0)";
+              dot.style.opacity = 1;
+            }
+          });
+        });
+      });
+    </script>
   </head>
 
   <body>
     <nav>
-      <a href="/universities">Universities</a>
-      <a href="/units">Units</a>
-      <a href="/find_roommates">Find Compatible Roommates</a>
-      <% if current_alum != nil %>
-      <%= link_to "Sign out", destroy_alum_session_path, method: :delete %>
-        <a href="/alums/edit">Edit profile</a>
-      <% else %>
-        <a href="/alums/sign_up">Sign up</a>
-        <a href="/alums/sign_in">Sign in</a>
-      <% end %>
-
+      <div>
+        <a href="/universities">Universities</a>
+        <a href="/units">Units</a>
+        <a href="/find_roommates">Find Compatible Roommates</a>
+      </div>
+      <div>
+        <% if current_alum != nil %>
+          <%= link_to "Sign out", destroy_alum_session_path, method: :delete %>
+          <a href="/alums/edit">Edit profile</a>
+        <% else %>
+          <a href="/alums/sign_up">Sign up</a>
+          <a href="/alums/sign_in">Sign in</a>
+        <% end %>
+      </div>
     </nav>
 
-    <hr>
+    <div class="alert-container">
+      <% if notice.present? %>
+        <div class="notice">
+          <%= notice %>
+        </div>
+      <% end %>
 
-    <% if notice.present? %>
-      <div style="color: green">
-        <%= notice %>
-      </div>
-    <% end %>
+      <% if alert.present? %>
+        <div class="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+    </div>
 
-    <% if alert.present? %>
-      <div style="color: red">
-        <%= alert %>
-      </div>
-    <% end %>
-
-    <%= yield %>
+    <div class="content">
+      <%= yield %>
+    </div>
   </body>
 </html>
