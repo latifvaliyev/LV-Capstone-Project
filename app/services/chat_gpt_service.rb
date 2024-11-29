@@ -46,3 +46,4 @@ class ChatGPTService
     end
   end
 end
+
