@@ -93,17 +93,6 @@ alumni_with_units = [
     }
   },
   {
-    name: "Alice Johnson",
-    email: "alice.johnson@example.com",
-    graduation_year: 2015,
-    industry: "Healthcare",
-    bio: "A public health advocate working on equitable healthcare access.",
-    unit: {
-      address: "303 Oak St, Chicago, IL",
-      unit_bio: "A cozy one-bedroom apartment near the hospital district."
-    }
-  },
-  {
     name: "Bob Brown",
     email: "bob.brown@example.com",
     graduation_year: 2017,
@@ -115,14 +104,14 @@ alumni_with_units = [
     }
   },
   {
-    name: "Catherine Lee",
-    email: "catherine.lee@example.com",
-    graduation_year: 2020,
-    industry: "Arts",
-    bio: "A freelance graphic designer exploring the world of digital art.",
+    name: "Alice Johnson",
+    email: "alice.johnson@example.com",
+    graduation_year: 2015,
+    industry: "Healthcare",
+    bio: "A public health advocate working on equitable healthcare access.",
     unit: {
-      address: "505 Maple Dr, Chicago, IL",
-      unit_bio: "An artsy apartment with a personal studio space."
+      address: "303 Oak St, Chicago, IL",
+      unit_bio: "A cozy one-bedroom apartment near the hospital district."
     }
   },
   {
@@ -137,14 +126,14 @@ alumni_with_units = [
     }
   },
   {
-    name: "Sophia Taylor",
-    email: "sophia.taylor@example.com",
-    graduation_year: 2018,
-    industry: "Science",
-    bio: "A climate scientist focused on renewable energy solutions.",
+    name: "Catherine Lee",
+    email: "catherine.lee@example.com",
+    graduation_year: 2020,
+    industry: "Arts",
+    bio: "A freelance graphic designer exploring the world of digital art.",
     unit: {
-      address: "707 Willow Ln, Chicago, IL",
-      unit_bio: "A green-certified apartment with energy-efficient features."
+      address: "505 Maple Dr, Chicago, IL",
+      unit_bio: "An artsy apartment with a personal studio space."
     }
   },
   {
@@ -159,14 +148,14 @@ alumni_with_units = [
     }
   },
   {
-    name: "Emma Davis",
-    email: "emma.davis@example.com",
-    graduation_year: 2016,
-    industry: "Nonprofit",
-    bio: "A nonprofit organizer advocating for education equity.",
+    name: "Sophia Taylor",
+    email: "sophia.taylor@example.com",
+    graduation_year: 2018,
+    industry: "Science",
+    bio: "A climate scientist focused on renewable energy solutions.",
     unit: {
-      address: "909 Walnut Rd, Chicago, IL",
-      unit_bio: "A sunny apartment close to local charity headquarters."
+      address: "707 Willow Ln, Chicago, IL",
+      unit_bio: "A green-certified apartment with energy-efficient features."
     }
   },
   {
@@ -181,14 +170,14 @@ alumni_with_units = [
     }
   },
   {
-    name: "Isabella Harris",
-    email: "isabella.harris@example.com",
-    graduation_year: 2023,
-    industry: "Tech",
-    bio: "A software developer specializing in mobile app design.",
+    name: "Emma Davis",
+    email: "emma.davis@example.com",
+    graduation_year: 2016,
+    industry: "Nonprofit",
+    bio: "A nonprofit organizer advocating for education equity.",
     unit: {
-      address: "1111 Poplar St, Chicago, IL",
-      unit_bio: "A trendy downtown apartment with smart home features."
+      address: "909 Walnut Rd, Chicago, IL",
+      unit_bio: "A sunny apartment close to local charity headquarters."
     }
   },
   {
@@ -203,14 +192,14 @@ alumni_with_units = [
     }
   },
   {
-    name: "Mia Walker",
-    email: "mia.walker@example.com",
-    graduation_year: 2024,
-    industry: "Healthcare",
-    bio: "A nursing student dedicated to improving patient care.",
+    name: "Isabella Harris",
+    email: "isabella.harris@example.com",
+    graduation_year: 2023,
+    industry: "Tech",
+    bio: "A software developer specializing in mobile app design.",
     unit: {
-      address: "1313 Sycamore Rd, Chicago, IL",
-      unit_bio: "A peaceful studio apartment near the university hospital."
+      address: "1111 Poplar St, Chicago, IL",
+      unit_bio: "A trendy downtown apartment with smart home features."
     }
   },
   {
@@ -257,6 +246,7 @@ alumni_with_units = [
       unit_bio: "A modern apartment with excellent transit connections."
     }
   },
+
   {
     name: "Elijah Nelson",
     email: "elijah.nelson@example.com",
@@ -269,14 +259,14 @@ alumni_with_units = [
     }
   },
   {
-    name: "Amelia Baker",
-    email: "amelia.baker@example.com",
-    graduation_year: 2030,
-    industry: "Nonprofit",
-    bio: "A social worker driven to create impactful change.",
+    name: "Mia Walker",
+    email: "mia.walker@example.com",
+    graduation_year: 2024,
+    industry: "Healthcare",
+    bio: "A nursing student dedicated to improving patient care.",
     unit: {
-      address: "1919 Maple Ave, Chicago, IL",
-      unit_bio: "A community-centered apartment with shared amenities."
+      address: "1313 Sycamore Rd, Chicago, IL",
+      unit_bio: "A peaceful studio apartment near the university hospital."
     }
   },
   {
@@ -288,6 +278,17 @@ alumni_with_units = [
     unit: {
       address: "2020 Redwood St, Chicago, IL",
       unit_bio: "A chic apartment with eco-friendly decor."
+    }
+  },
+  {
+    name: "Amelia Baker",
+    email: "amelia.baker@example.com",
+    graduation_year: 2030,
+    industry: "Nonprofit",
+    bio: "A social worker driven to create impactful change.",
+    unit: {
+      address: "1919 Maple Ave, Chicago, IL",
+      unit_bio: "A community-centered apartment with shared amenities."
     }
   }
 ]
@@ -356,7 +357,7 @@ alumni_with_units.each_with_index do |data, index|
     industry: data[:industry],
     linkedin: "https://www.linkedin.com/in/#{data[:name].parameterize}",
     bio: data[:bio],
-    image: headshots[index] # Assigning the alternating headshots
+    image: headshots[index % headshots.size] # Sequentially assign from the headshots array
   )
 
   city = if [1, 5, 10].include?(index) # Set the 2nd, 6th, and 11th units to New York
@@ -375,4 +376,3 @@ alumni_with_units.each_with_index do |data, index|
 end
 
 puts "Seeded #{alumni_with_units.length} alumni, each with a unit, including 3 in New York."
-
