@@ -1,6 +1,6 @@
 <h1>Find Compatible Roommates</h1>
 
-<%= form_with url: "/find_roommates", method: :post, local: true do |f| %>
+<%= form_with url: find_roommates_path, method: :post, local: true do |f| %>
   <div>
     <label for="city">City:</label>
     <%= f.select :city, @cities, prompt: "Select a city", required: true %>
@@ -8,7 +8,7 @@
 
   <div>
     <label for="grad_year_range">Graduation Year Range:</label>
-    <%= f.select :grad_year_range, [[3, "Within 3 Years"], [5, "Within 5 Years"]], prompt: "Select a range", required: true %>
+    <%= f.select :grad_year_range, [["Within 3 Years", 3], ["Within 5 Years", 5]], prompt: "Select a range", required: true %>
   </div>
 
   <div>
