@@ -17,7 +17,9 @@
         <td><%= result[:alum].graduation_year %></td>
         <td>
           <% if result[:compatibility_bio].present? %>
+            <div style="max-width: 300px; max-height: 100px; overflow: auto;">
             <%= result[:compatibility_bio] %>
+            </div>
           <% else %>
             Compatibility bio not available.
           <% end %>
