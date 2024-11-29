@@ -4,8 +4,8 @@ class ChatGPTService
     prompt = build_prompt(alumni, current_alum)
 
     # Call the OpenAI API
-    client = OpenAI::Client.new(access_token: "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")
-    response = client.completions(
+    client = OpenAI::Client.new(access_token: "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")
+    response = client.chat(
       parameters: {
         model: "gpt-4",
         prompt: prompt,
