@@ -292,7 +292,60 @@ alumni_with_units = [
   }
 ]
 
-alumni_with_units.each do |data|
+headshots = [
+  "headshots/boy1.jpeg", "headshots/girl1.webp", "headshots/boy2.avif", "headshots/girl2.avif",
+  "headshots/boy3.jpeg", "headshots/girl3.webp", "headshots/boy4.jpeg", "headshots/girl4.avif",
+  "headshots/boy5.jpeg", "headshots/girl5.jpeg", "headshots/boy6.jpeg", "headshots/girl6.jpeg",
+  "headshots/boy7.webp", "headshots/girl7.jpeg", "headshots/boy8.webp", "headshots/girl8.jpeg",
+  "headshots/boy9.webp", "headshots/girl9.jpeg", "headshots/boy10.webp", "headshots/girl10.jpeg"
+]
+
+unit_bios = [
+  "A cozy apartment near the city center, perfect for students and professionals alike.",
+  "Modern high-rise with breathtaking skyline views and a rooftop pool.",
+  "A charming loft in a trendy neighborhood, steps away from coffee shops and boutiques.",
+  "Sunny one-bedroom with big windows and a homey vibe, close to public transit.",
+  "Recently renovated unit with sleek finishes and a spacious open floor plan.",
+  "Quaint studio apartment with a private balcony overlooking a park.",
+  "Stylish apartment featuring smart home technology and eco-friendly amenities.",
+  "A quiet townhouse in a family-friendly area, ideal for peaceful living.",
+  "Spacious two-bedroom unit with hardwood floors and plenty of natural light.",
+  "Minimalist apartment with modern decor, located near the arts district.",
+  "Comfortable unit with a shared rooftop garden and a vibrant community.",
+  "Luxury condo with access to an in-building gym and secure parking.",
+  "Vintage-style apartment with character, close to historic landmarks.",
+  "Industrial loft with exposed brick walls and high ceilings.",
+  "Conveniently located near the university campus and local hotspots.",
+  "Pet-friendly unit with a large backyard, perfect for animal lovers.",
+  "A budget-friendly studio with essential amenities and a central location.",
+  "A spacious duplex with a private entrance and plenty of storage.",
+  "Affordable apartment with a communal laundry room and cozy layout.",
+  "A trendy downtown apartment with easy access to nightlife and dining."
+]
+unit_images = [
+  "units/images-1.jpeg",
+  "units/images-2.jpeg",
+  "units/images-3.jpeg",
+  "units/images-4.jpeg",
+  "units/images-5.jpeg",
+  "units/images-6.jpeg",
+  "units/images-7.jpeg",
+  "units/images-8.jpeg",
+  "units/images-9.jpeg",
+  "units/images-10.jpeg",
+  "units/images-11.jpeg",
+  "units/images-12.jpeg",
+  "units/images.jpeg",
+  "units/Unknown-1.jpeg",
+  "units/Unknown-2.jpeg",
+  "units/Unknown-3.jpeg",
+  "units/Unknown-4.jpeg",
+  "units/Unknown-5.jpeg",
+  "units/Unknown-6.jpeg",
+  "units/Unknown.jpeg"
+]
+
+alumni_with_units.each_with_index do |data, index|
   alum = Alum.create!(
     name: data[:name],
     email: data[:email],
@@ -302,16 +355,24 @@ alumni_with_units.each do |data|
     graduation_year: data[:graduation_year],
     industry: data[:industry],
     linkedin: "https://www.linkedin.com/in/#{data[:name].parameterize}",
-    bio: data[:bio]
+    bio: data[:bio],
+    image: headshots[index] # Assigning the alternating headshots
   )
 
+  city = if [1, 5, 10].include?(index) # Set the 2nd, 6th, and 11th units to New York
+           "New York"
+         else
+           "Chicago"
+         end
+
   Unit.create!(
-    city: "Chicago",
-    address: data[:unit][:address],
-    unit_image: "https://via.placeholder.com/150",
-    unit_bio: data[:unit][:unit_bio],
+    city: city, # Dynamically assign city
+    address: "#{data[:name].parameterize}-address, #{city}, IL",
+    unit_bio: unit_bios[index % unit_bios.size], # Assigning a unique bio in rotation
+    unit_image: unit_images[index], # Assigning images in order
     alum_id: alum.id
   )
 end
 
-puts "Seeded 20 alumni from the University of Chicago, each with a unit in Chicago."
+puts "Seeded #{alumni_with_units.length} alumni, each with a unit, including 3 in New York."
+

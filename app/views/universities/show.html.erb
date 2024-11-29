@@ -4,7 +4,7 @@
       <%= @the_university.name %>
     </h1>
     <div>
-      <%= image_tag(@the_university.uni_image, alt: @the_university.name, width: 300, height: 300) %>
+      <%= image_tag(@the_university.uni_image, alt: @the_university.name, width: 300, height: 300, style: "object-fit: cover;") %>
     </div>
     <div>
       <a href="/universities">
@@ -31,14 +31,14 @@
       <% @the_university.alums.each do |alum| %>
         <tr>
           <td>
-          <% if alum.image.present? && alum.image != "N/A" %>
-            <%= image_tag(alum.image, alt: alum.name, width: 100, height: 100) %>
-          <% else %>
-            No Image
-          <% end %>
+            <% if alum.image.present? && alum.image != "N/A" %>
+              <%= image_tag(alum.image, alt: alum.name, width: 100, height: 100, style: "object-fit: cover;") %>
+            <% else %>
+              No Image
+            <% end %>
           </td>
           <td><%= alum.name %></td>
-          <td><%= alum.graduation_year%></td>
+          <td><%= alum.graduation_year %></td>
           <td><%= alum.industry %></td>
           <td>
             <% if alum.linkedin.present? %>
@@ -57,5 +57,3 @@
     <p>No alumni have selected this university yet.</p>
   <% end %>
 </div>
-
- 

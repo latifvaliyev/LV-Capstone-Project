@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all units
+      Available Units
     </h1>
   </div>
 </div>
@@ -55,7 +55,6 @@
     <% else %>
       <p>You must <a href="/alums/sign_in">sign in</a> to add a unit.</p>
     <% end %>
-
   </div>
 </div>
 
@@ -75,15 +74,15 @@
         <select id="filter_city" name="city">
           <option value="">All Cities</option>
           <% @list_of_units.map(&:city).uniq.each do |city| %>
-            <option value="<%= city %>"><%= city %></option>
+            <option value="<%= city %>" <%= "selected" if params[:city] == city %>><%= city %></option>
           <% end %>
         </select>
         <button type="submit">Filter</button>
+        <a href="/units" class="button" style="margin-left: 10px;">Reset Filter</a> <!-- Reset button -->
       </div>
     </form>
   </div>
 </div>
-
 
 <hr>
 <div>
@@ -115,9 +114,12 @@
 
       <% @list_of_units.each do |a_unit| %>
       <tr>
-
         <td>
-          <%= a_unit.unit_image %>
+          <% if a_unit.unit_image.present? %>
+            <%= image_tag(a_unit.unit_image, alt: "Unit Image", style: "width: 150px; height: auto; object-fit: contain;") %>
+          <% else %>
+            No Image Available
+          <% end %>
         </td>
         <td>
           <%= a_unit.city %>
@@ -126,8 +128,6 @@
         <td>
           <%= a_unit.address %>
         </td>
-
-
 
         <td>
           <%= a_unit.unit_bio %>
