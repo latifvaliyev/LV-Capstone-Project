@@ -24,7 +24,7 @@
         Unit image
       </dt>
       <dd>
-        <%= @the_unit.unit_image %>
+        <%= image_tag(@the_unit.unit_image, alt: "Unit Image", class: "unit-image") if @the_unit.unit_image.present? %>
       </dd>
       <dt>
         City
@@ -75,12 +75,13 @@
 
 
 <div>
+  <% if @the_unit.alum == current_alum %>
   <div>
     <h2>
       Edit unit
     </h2>
 
-    <form action="/modify_unit/<%= @the_unit.id %>"  method="post" >
+    <form action="/modify_unit/<%= @the_unit.id %>" method="post">
       <div>
         <label for="city_box">
           City
@@ -118,4 +119,8 @@
       </button>
     </form>
   </div>
+<% else %>
+  <p>You are not authorized to edit this unit.</p>
+<% end %>
+
 </div>

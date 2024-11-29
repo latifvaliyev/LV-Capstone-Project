@@ -1,35 +1,64 @@
-<h1>Compatible Roommates in <%= params[:city] %></h1>
+<div style="text-align: center; margin-bottom: 20px;">
+  <h1 style="font-family: Arial, sans-serif; color: #2c3e50;">
+    Compatible Roommates in <%= params[:city] %>
+  </h1>
+</div>
+
+<hr style="border: 1px solid #ddd; margin-bottom: 20px;">
 
 <% if @results.present? %>
-  <table border="1">
-    <tr>
-      <th>Name</th>
-      <th>Industry</th>
-      <th>Graduation Year</th>
-      <th>Compatibility Bio</th>
-      <th>Details</th>
-    </tr>
-
-    <% @results.each do |result| %>
-      <tr>
-        <td><%= result[:alum].name %></td>
-        <td><%= result[:alum].industry %></td>
-        <td><%= result[:alum].graduation_year %></td>
-        <td>
-          <% if result[:compatibility_bio].present? %>
-            <div style="max-width: 300px; max-height: 100px; overflow: auto;">
-            <%= result[:compatibility_bio] %>
-            </div>
-          <% else %>
-            Compatibility bio not available.
+  <div style="display: flex; justify-content: center;">
+    <div style="width: 90%; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #f9f9f9;">
+        <thead style="background-color: #34495e; color: white;">
+          <tr>
+            <th style="padding: 15px; text-align: left; font-size: 16px;">Name</th>
+            <th style="padding: 15px; text-align: left; font-size: 16px;">Industry</th>
+            <th style="padding: 15px; text-align: left; font-size: 16px;">Graduation Year</th>
+            <th style="padding: 15px; text-align: left; font-size: 16px;">Compatibility Bio</th>
+            <th style="padding: 15px; text-align: center; font-size: 16px;">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @results.each_with_index do |result, index| %>
+            <tr style="<%= index.even? ? 'background-color: #ecf0f1;' : '' %>">
+              <td style="padding: 15px; text-align: left; font-size: 14px; color: #2c3e50;">
+                <%= result[:alum].name %>
+              </td>
+              <td style="padding: 15px; text-align: left; font-size: 14px; color: #2c3e50;">
+                <%= result[:alum].industry %>
+              </td>
+              <td style="padding: 15px; text-align: left; font-size: 14px; color: #2c3e50;">
+                <%= result[:alum].graduation_year %>
+              </td>
+              <td style="padding: 15px; text-align: left; font-size: 14px; color: #2c3e50;">
+                <% if result[:compatibility_bio].present? %>
+                  <div style="max-width: 300px; max-height: 100px; overflow: auto; padding: 10px; background-color: #ffffff; border: 1px solid #ccc; border-radius: 5px;">
+                    <%= result[:compatibility_bio] %>
+                  </div>
+                <% else %>
+                  Compatibility bio not available.
+                <% end %>
+              </td>
+              <td style="padding: 15px; text-align: center;">
+                <%= link_to "View Profile", alum_path(result[:alum]), style: "text-decoration: none; color: #2980b9; font-weight: bold; font-size: 14px;" %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-        <td><%= link_to "View Profile", alum_path(result[:alum]) %></td>
-      </tr>
-    <% end %>
-  </table>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% else %>
-  <p>No compatible roommates found for the selected criteria.</p>
+  <div style="text-align: center; margin-top: 30px;">
+    <p style="font-family: Arial, sans-serif; color: #2c3e50; font-size: 16px;">
+      No compatible roommates found for the selected criteria.
+    </p>
+  </div>
 <% end %>
 
-<a href="<%= find_roommates_path %>">Search Again</a>
+<div style="text-align: center; margin-top: 20px;">
+  <a href="<%= find_roommates_path %>" style="padding: 10px 20px; background-color: #2980b9; color: white; text-decoration: none; border-radius: 5px; font-size: 14px;">
+    Search Again
+  </a>
+</div>

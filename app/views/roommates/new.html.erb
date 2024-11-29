@@ -1,17 +1,29 @@
-<h1>Find Compatible Roommates</h1>
+<div style="text-align: center; margin-bottom: 20px;">
+  <h1 style="font-family: Arial, sans-serif; color: #2c3e50;">
+    Find Compatible Roommates
+  </h1>
+</div>
 
-<%= form_with url: find_roommates_path, method: :post, local: true do |f| %>
-  <div>
-    <label for="city">City:</label>
-    <%= f.select :city, @cities, prompt: "Select a city", required: true %>
-  </div>
+<hr style="border: 1px solid #ddd; margin-bottom: 20px;">
 
-  <div>
-    <label for="grad_year_range">Graduation Year Range:</label>
-    <%= f.select :grad_year_range, [["Within 3 Years", 3], ["Within 5 Years", 5]], prompt: "Select a range", required: true %>
-  </div>
+<div style="display: flex; justify-content: center;">
+  <div style="width: 60%; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <%= form_with url: find_roommates_path, method: :post, local: true do |f| %>
+      <div style="margin-bottom: 20px;">
+        <label for="city" style="font-weight: bold; font-size: 14px; color: #34495e;">City:</label>
+        <%= f.select :city, @cities, prompt: "Select a city", required: true, style: "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" %>
+      </div>
 
-  <div>
-    <%= f.submit "Find Roommates" %>
+      <div style="margin-bottom: 20px;">
+        <label for="grad_year_range" style="font-weight: bold; font-size: 14px; color: #34495e;">Graduation Year Range:</label>
+        <%= f.select :grad_year_range, [["Within 3 Years", 3], ["Within 5 Years", 5]], prompt: "Select a range", required: true, style: "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" %>
+      </div>
+
+      <div style="text-align: center;">
+        <%= f.submit "Find Roommates", style: "padding: 10px 20px; background-color: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
+
+<hr style="border: 1px solid #ddd; margin-top: 20px;">

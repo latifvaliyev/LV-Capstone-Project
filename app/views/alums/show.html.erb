@@ -5,7 +5,7 @@
     </h1>
     <div>
       <% if @the_alum.image.present? %>
-        <%= image_tag(@the_alum.image, alt: @the_alum.name, width: 300, height: 300) %>
+<%= image_tag(@the_alum.image, alt: @the_alum.name, style: "width: 300px; height: 300px; object-fit: cover; border-radius: 8px;") %>
       <% else %>
         No Image Available
       <% end %>

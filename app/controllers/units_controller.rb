@@ -38,6 +38,16 @@ class UnitsController < ApplicationController
   end
 
   def update
+    before_action :ensure_occupant, only: [:edit, :update]
+
+private
+
+def ensure_occupant
+  unit = Unit.find(params[:id])
+  unless current_user == unit.alum
+    redirect_to unit_path(unit), alert: "You are not authorized to edit this unit."
+  end
+end
     the_id = params.fetch("path_id")
     the_unit = Unit.where({ :id => the_id }).at(0)
 

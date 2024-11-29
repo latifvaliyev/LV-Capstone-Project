@@ -1,51 +1,42 @@
 <div>
-  <div>
-    <h1>
+  <div style="text-align: center; margin-bottom: 20px;">
+    <h1 style="font-family: Arial, sans-serif; color: #2c3e50;">
       Universities
     </h1>
   </div>
 </div>
 
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
+<hr style="border: 1px solid #ddd; margin-bottom: 20px;">
 
-        <th>
-          Image
-        </th>
-
-        <th>
-          Name
-        </th>
-
-
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_universities.each do |a_university| %>
-      <tr>
-
-        <td>
-          <%= image_tag(a_university.uni_image, alt: a_university.name, width: 100, height: 100) %>
-        </td>
-
-        <td>
-          <%= a_university.name %>
-        </td>
-
-        <td>
-          <a href="/universities/<%= a_university.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
+<div style="display: flex; justify-content: center;">
+  <div style="width: 90%; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #f9f9f9;">
+      <thead style="background-color: #34495e; color: white;">
+        <tr>
+          <th style="padding: 15px; text-align: center; font-size: 16px;">Image</th>
+          <th style="padding: 15px; text-align: left; font-size: 16px;">Name</th>
+          <th style="padding: 15px; text-align: center; font-size: 16px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @list_of_universities.each_with_index do |a_university, index| %>
+          <tr style="<%= index.even? ? 'background-color: #ecf0f1;' : '' %>">
+            <td style="padding: 15px; text-align: center;">
+              <%= image_tag(a_university.uni_image, alt: a_university.name, style: 'width: 100px; height: 100px; border-radius: 50%; object-fit: cover;') %>
+            </td>
+            <td style="padding: 15px; text-align: left; font-size: 14px; color: #2c3e50;">
+              <%= a_university.name %>
+            </td>
+            <td style="padding: 15px; text-align: center;">
+              <a href="/universities/<%= a_university.id %>" style="text-decoration: none; color: #2980b9; font-weight: bold; font-size: 14px;">
+                Show details
+              </a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
 
-<hr>
+<hr style="border: 1px solid #ddd; margin-top: 20px;">
