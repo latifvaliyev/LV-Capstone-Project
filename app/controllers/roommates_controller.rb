@@ -1,3 +1,5 @@
+require_relative "../services/chat_gpt_service"
+
 class RoommatesController < ApplicationController
   def new
     # Populate unique cities from the database for the dropdown
